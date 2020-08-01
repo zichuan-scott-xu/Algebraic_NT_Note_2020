@@ -1,0 +1,191 @@
+\documentclass[12pt,twoside=semi,openright,numbers=noenddot]{scrbook}
+\input{preamble}
+
+\title{Introduction to Algebraic Number Theory 2020 Note, Ross Program}
+\author{Scott Xu}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\setcounter{chapter}{-1}
+
+\chapter{Introduction}
+    \noindent
+    This course is hosted by professor Paul Pollack during the 2020 Ross Mathematics Program. The organization of the whole course and 
+    the problems in this note is taken from his lectures, problem sets and problem sessions. \\
+    \newline
+    The two-week course after the usual analytic number theory sessions aims to give a short introduction on algebraic number theory, 
+    and particularly, how ideas in the algebraic number theory applies to the quadratic fields. (The content of the course will be updated 
+    after the course is finished as the note is updated.) \\
+    \newline
+    I studied the style of the \LaTeX \ note by Evan Chen's \emph{An Infinitely Large Napkin}, which is open-source on Github.
+
+\chapter{Introduction to Algebraic Number Theory, Ross Program 2020}
+\section{Lecture 1}
+\begin{definition}[Algebraic Number]
+    $\alpha \in \cc$ is called an algebraic number iff it's a root of some nonzero polynomial in $\qq[x]$. We denote the set of all 
+    algebraic numbers as $\bar{\qq}$.
+\end{definition}
+\begin{definition}[Algebraic Integer]
+    An algebraic integer $\alpha \in \cc$ is the root of some monic polynomial in $\zz[x]$.
+    We denote the set of all algebraic integers as $\bar{\zz}$. 
+\end{definition}
+In summary, we have $\bar{\zz} \subset \bar{\qq} \subset \cc$. We can also check that 
+$\bar{\zz} \cap \qq = \zz$. This leads us to the general discussions about number fields.\\
+
+\begin{definition}[Number Field]
+    A number field is a field of the form $\qq[\theta]$ where $\theta \in \bar{\qq}$.
+\end{definition}
+For example, $\zz[i], \qq[i], \qq[\omega]$ are all number fields.
+\begin{definition}
+    If $K$ is a number field, the ring of integers of $K$ is defined to be $\bar{\zz} \cap K$. For example, 
+    the ring of integers of $\qq$ is just $\zz$.
+\end{definition}
+The reason why we want to study the ring of integers instead of all algebraic integers 
+is that there are "too many" numbers to be studied. One observation is that $\bar{\zz}$ has no irreducible,
+because for any non-unit $\alpha \in \bar{\zz}$, $\sqrt{\alpha}$ is also in $\bar{\zz}$. (Definition of units and irreducibles will
+be given in Lecture 2.)
+
+\newpage
+\section{Problem Session 1}
+\begin{problem}
+    $\bar{\zz}$ is a ring and $\bar{\qq}$ is a field.
+\end{problem}
+    \begin{proof}
+        We want to borrow the \textbf{Fundamental Theorem of Symmetrical Functions} here. \\
+        \begin{lemma}[Fundamental Theorem of Symmetrical Functions]
+            Let $R$ be a ring and let $P(\listelem{x}{n}) \in R[\listelem{x}{n}]$ be a symemtric polynomial. 
+            Then $P(\listelem{x}{n}) = G(\listelem{s}{n})$ for some polynomial $G$ with coefficients from $R$.
+            $s_i$ denotes the $i$-th elementary symmetrical function in $\listelem{x}{n}$, i.e., the sum of all products of $i$ terms 
+            in $\listelem{x}{n}$.
+        \end{lemma}
+        Now we prove that $\zz$ is closed under addition and multiplication. The closure of $\qq$ can be proved in a similar way.
+        Suppose that $\alpha_1$ and $\beta_1$ are roots of $P(x)$ and $Q(x)$, respectively. And suppose that $P(x) = (x-\alpha_1)(x-\alpha_2)\cdots(x-\alpha_t)$ and 
+        $Q(x) = (x-\beta_1)(x-\beta_2)\cdot(x-\beta_s)$. We now find the polynomial $S(x)$ where
+        $$ S(x) = \prod_{1\leq i \leq t, 1 \leq j \leq s} \left(x-(\alpha_i+\beta_j)\right) $$
+        and its coefficients should lie in $\zz$ using Lemma 1.2.2 twice. Similarly we can construct
+        $$T(x) = \prod_{1\leq i \leq t,1 \leq j \leq s} (x-\alpha_i \beta_j)$$
+        to prove the multiplicative closure.
+    \end{proof}
+
+\begin{problem}
+    It's known that the sum $1 + \sqrt{2} + \sqrt[3]{3} + \cdots + \sqrt[100]{100}$ lies strictly 
+    between 111 and 112. Explain how we can quickly deduce that the sum is irrational. (From what we've already known)
+\end{problem}
+    \begin{proof}
+        Because $\bar{\zz}$ is a ring, and each of the elements in the sum is in $\bar{\zz}$, the number is also 
+        in $\bar{\zz}$. Suppose by contradiction that it's in $\qq$, then it's in $\bar{\zz} \cap \qq = \zz$, which is 
+        impossible because it lies between two integers. Thus, the sum is irrational.
+    \end{proof}
+
+
+
+\begin{problem}
+    Exhibit a monic polynomial in $\qq[x]$ which has $\sin(2\pi/7)$ as a root.\\
+    Exhibit a monic polynomial in $\zz[x]$ which has $2\cos(2\pi/9)$ as a root.
+\end{problem}
+
+    \begin{proof}
+        For the first problem, notice that 
+        $$ (\cos \frac{2\pi}{7} + \sin \frac{2\pi}{7}i )^7 = e^{2\pi i} = 1$$
+        $$ \sum_{j = 0}^7 \binom{7}{j} \cos^j \frac{2\pi}{7} (\sin^{7-j} \frac{2\pi}{7})i^{7-j} = 1$$
+        Because both sides represent a real number, the term when $j$ is even can be treated as $0$.
+        When $j$ is odd, $7-j$ is even, so we can represent $\cos^2 (2\pi/7)$ by $1-\sin^2 (2\pi/7)$.
+        This generates a monic polynomial in $\qq[x]$ which has $\sin (2\pi/7)$ as a root. \\
+        For the second problem, let $\zeta = e^{2\pi i/9}$ denote the ninth root of unity. Then 
+        $$ 2 \cos \frac{2\pi}{9} = \zeta + \bar{\zeta} = \zeta + \zeta ^{-1}$$
+        As $\zeta ^9 = 1$ and $\zeta \neq 1$, we also have
+        $$ \zeta ^ 8 + \zeta ^ 7 + \cdots + \zeta + 1 = 0$$
+        $$ (\zeta ^ 4 + \zeta ^{-4}) + (\zeta^3 + \zeta^{-3}) + \cdots + 1 = 0$$
+        Because each $\zeta^k + \zeta^{-k}$ can be represented by a polynomial of $\zeta+ \zeta^{-1}$, we have 
+        now found a monic polynomial for our $\zeta + \zeta^{-1}$, which is $2\cos (2\pi/9)$.
+    \end{proof}
+
+\begin{problem}
+    Show that $\sin 1^\circ $ is an algebraic number.
+\end{problem}
+    \begin{proof}
+        The proof is similar to Problem 1.2.4.
+    \end{proof}
+
+\begin{problem}
+    Show that $\bar{\qq}$ is a fraction field of $\bar{\zz}$. That is (it remains to show that), every number in $\bar{\qq}$ can be 
+    represented as the fraction of two numbers in $\bar{\zz}$.
+\end{problem}
+    \begin{proof}
+        For any $\alpha \in \bar{\qq}$, it's a root to the polynomial $P(x) = a_n x^n + \cdots + a_1 x + a_0$ (we can let 
+        $a_n = 1$ so that the polynomial is monic). 
+        Let $L$ denotes the least common multiplier of the denominators of $a_i$'s written in their reduced form. 
+        Now, $P(L\alpha) = L^n(P(\alpha)) = 0$ gives $Lx$ is a root of the monic polynomial $L^n P(x)$ in $\zz[x]$. Therefore, 
+        $L\alpha \in \bar{\zz}$. Because $L$ is trivially in $\bar{\zz}$, we have $\alpha = L\alpha / L$ as the desired form.
+    \end{proof}
+
+\begin{problem}
+    Is $1/(3+\sqrt{2})$ an algebraic integer? How to characterize the units in $\bar{\zz}$?
+\end{problem}
+    \begin{proof}
+        For the first problem, if $\alpha = 1/(3+\sqrt{2})$ is an algebraic integer, then 
+        $\bar{\alpha} = 1/(3-\sqrt{2})$ is also an algebraic integer. (This can be easily checked by the knowledge of polynomial and 
+        "conjugate" roots, or viewing the map from one root to its conjugate as a ring automorphism). Because $\bar{\zz}$ is a ring, we know that $\alpha \bar{\alpha} = 1/7$ is also in $\bar{\zz}$, contradiction. \\
+        For the second problem, the units in $\bar{\zz}$ can be characterize as "those $\alpha$ with minimal polynomial ending with constant term $\pm 1$". (Equivalently, the product of all its conjugates should be $\pm 1$).
+    \end{proof}
+
+\section{Lecture 2}
+Recall that the study of algebraic integers focuses on $\bar{\zz} \cap K := \zz_K$, called the ring of integers of $K$, where $K = \qq[\theta]$ for some $\theta \in \bar{\qq}$.
+Now we restrict our discussion on those $K$ such that $\theta$ is a root of a degree-two polynomial. 
+\begin{definition}[Quadratic Number Field]
+    A  quadratic number field is of the form $\qq[\theta]$ where $\theta$ is a root of a degree-two polynomial in $\qq[x]$ and $\theta \notin \qq$.
+\end{definition}
+If the polynomial given in the definition is $P(x) = ax^2+bx+c$, then we can express $\theta$ as $\frac{-b\pm \sqrt{b^2-4ac}}{2a}$ where $D:= b^2-4ac$ is a non-square.
+Then actually $\qq[\theta] = \qq[\sqrt{D}]$. Moreover, we can uniquely determine $\qq[\sqrt{D}] = \qq[\sqrt{D'}]$ where $D'$ is not only non-square but also 
+square-free. (Given as exercise)  \\
+Another remark is on the convention of $\sqrt{d}$: when $d<0$, this represents $i \cdot \sqrt{|d|}$. \\
+Now let $\alpha \in \qq[\sqrt{d}]$ with $d \neq 1$ being square-free. Then $\alpha = x+y\sqrt{d}$ with $x, y$ uniquely determined.
+Define $\bar{\alpha} = x-y\sqrt{d}$.
+\begin{remark}
+    $\alpha \in \bar{\zz} \Leftrightarrow \alpha + \bar{\alpha} \in \zz, \alpha\bar{\alpha}\in \zz$.
+\end{remark}
+    \begin{proof}
+        ($\Rightarrow$) $\alpha \in \bar{\zz}$ implies $\bar{\alpha} \in \bar{\zz}$, $\alpha + \bar{\alpha} \in \bar{\zz}$. On the other hand,
+        $\alpha + \bar{\alpha} \in \qq$. Therefore, 
+        $\alpha + \bar{\alpha} \in \bar{\zz}\cap \qq = \zz$. By the same argument, $\alpha\bar{\alpha} \in \zz$. \\
+        ($\Leftarrow$) $\alpha$ is the root of the polynomial $P(x) = (x-\alpha)(x-\bar{\alpha})$ and $P(x) \in \zz[x]$. 
+        Thus, $\alpha \in \bar{\zz}$.
+    \end{proof}
+
+\begin{remark}[Traces and Norms in quadratic field]
+    $\mathrm{Tr}(\alpha) = \alpha + \bar{\alpha}$, $N(\alpha) = \alpha\bar{\alpha}$.
+\end{remark}
+
+\begin{definition}[Unit]
+    An $\alpha \in \zz_K$ is called a unit if there exists $\beta \in \zz_K$ such that 
+    $\alpha \beta = 1$.    
+\end{definition}
+\begin{definition}[Irreducible]
+    A $\pi \in \zz_K$ is irreducible (an irreducible) if $\pi$ is a non-zero, non-unit element and if 
+    $\pi = \alpha\beta, \alpha, \beta \in \zz_K$ implies either $\alpha$ or $\beta$ is a unit.
+\end{definition}
+\begin{definition}[Unique Factorization Domain, UFD]
+    Let $R$ be an integral domain (a commutative ring with no zero divisors.) $R$ is a UFD if 
+    $\forall \alpha \in R$, $\alpha$ being a non-zero and non-unit, $\alpha$ can be uniquely expressible 
+    as $\alpha = \pi_1\pi_2\cdots\pi_k$ where the $\pi_i$'s are irreducibles.
+\end{definition}
+    \begin{example}[A classical example of a non-UFD]
+        $\zz[\sqrt{-5}]$ is not a UFD, as $6 = 2\times 3 = (1+\sqrt{-5})(1-\sqrt{-5})$.
+    \end{example}
+
+Some exercises that characterize the quadratic field, its units and the unique factorization will be included in next section 
+as exercises. \\
+\newline
+The problem with the non-UFD domains is that "there are not enough numbers". For example, a famous "four-number theorem"
+is valid in $\zz$: if $ab = cd$ and $\gcd(a,b,c,d) = 1$, then we can write 
+$a = (a,c)(a,d)$, $b=(b,c)(b,d)$, $c=(a,c)(b,c)$, $d=(a,d)(b,d)$, where $(m,n)$ denotes the 
+$\gcd(m,n)$. However, the theorem is not true in 
+$\zz[\sqrt{-5}]$ for the four irreducible factors in Example 1.3.7 because $\gcd(2, 1+\sqrt{-5})$ doesn't exist. \\
+The way that we "restore" the unique factorization in these fields is to introduce new "numbers" that plays the role of 
+"$(2, 1+\sqrt{-5})$", etc. 
+
+
+\end{document} 
