@@ -10,9 +10,9 @@
 \maketitle
 \tableofcontents
 \setcounter{chapter}{-1}
+\setlength{\parindent}{0pt}
 
 \chapter{Introduction}
-    \noindent
     This course is hosted by professor Paul Pollack during the 2020 Ross Mathematics Program. The organization of the whole course and 
     the problems in this note is taken from his lectures, problem sets and problem sessions. \\
     \newline
@@ -23,7 +23,7 @@
     I studied the style of the \LaTeX \ note by Evan Chen's \emph{An Infinitely Large Napkin}, which is open-source on Github.
 
 \chapter{Introduction to Algebraic Number Theory, Ross Program 2020}
-\section{Lecture 1}
+\section{Lecture 1, July 29}
 \begin{definition}[Algebraic Number]
     $\alpha \in \cc$ is called an algebraic number iff it's a root of some nonzero polynomial in $\qq[x]$. We denote the set of all 
     algebraic numbers as $\bar{\qq}$.
@@ -49,7 +49,7 @@ because for any non-unit $\alpha \in \bar{\zz}$, $\sqrt{\alpha}$ is also in $\ba
 be given in Lecture 2.)
 
 \newpage
-\section{Problem Session 1}
+\section{Problem Session 1, July 30}
 \begin{problem}
     $\bar{\zz}$ is a ring and $\bar{\qq}$ is a field.
 \end{problem}
@@ -132,7 +132,7 @@ be given in Lecture 2.)
         For the second problem, the units in $\bar{\zz}$ can be characterize as "those $\alpha$ with minimal polynomial ending with constant term $\pm 1$". (Equivalently, the product of all its conjugates should be $\pm 1$).
     \end{proof}
 
-\section{Lecture 2}
+\section{Lecture 2, July 31}
 Recall that the study of algebraic integers focuses on $\bar{\zz} \cap K := \zz_K$, called the ring of integers of $K$, where $K = \qq[\theta]$ for some $\theta \in \bar{\qq}$.
 Now we restrict our discussion on those $K$ such that $\theta$ is a root of a degree-two polynomial. 
 \begin{definition}[Quadratic Number Field]
@@ -184,8 +184,128 @@ is valid in $\zz$: if $ab = cd$ and $\gcd(a,b,c,d) = 1$, then we can write
 $a = (a,c)(a,d)$, $b=(b,c)(b,d)$, $c=(a,c)(b,c)$, $d=(a,d)(b,d)$, where $(m,n)$ denotes the 
 $\gcd(m,n)$. However, the theorem is not true in 
 $\zz[\sqrt{-5}]$ for the four irreducible factors in Example 1.3.7 because $\gcd(2, 1+\sqrt{-5})$ doesn't exist. \\
-The way that we "restore" the unique factorization in these fields is to introduce new "numbers" that plays the role of 
+The way that we "restore" the unique factorization in these fields is to introduce new "numbers" that play the role of 
 "$(2, 1+\sqrt{-5})$", etc. 
+
+\section{Problem Session 2, August 1}
+\begin{problem}
+    Prove the Four Numbers Theorem: Suppose $a, b, c, d$ are positive integers with $ab = cd$ and $\gcd(a, b, c, d) = 1$. 
+    Then: 
+    $$ a = (a, c)(a, d), b = (b, c)(b, d), c = (a, c)(b, c), d = (a, d)(b, d). $$
+\end{problem}
+    \begin{proof}
+        Let $a = (a,c)m , c = (a, c)n$ where $(m,n) = 1$. Let $b = (b,d)t, d=(b,d)s$ where $(t,s)=1$.
+        Then $ab=cd$ gives $mt=ns$, which gives $m=s, n=t$. \\ 
+        Now we have $a = (a,c)m, d =(b,d)m$. $m \mid a, d$ gives $m \mid (a,d)$. On the other hand, 
+        $(a,d) \mid a$ and $(a,d)\mid d$ gives $(a,d) \mid m(a,c)$ and $(a,d) \mid m(b,d)$. 
+        Therefore, $(a,d)\mid \gcd((a,c),(b,d)) = m$. Together we get $m = (a,d)$. Similarly, $n = (b,c)$ and 
+        we are done.
+    \end{proof}
+
+\begin{problem}
+    Show that if $K$ is a quadratic field, then $K = \qq[\sqrt{d}]$ for some squarefree integer $d$.
+    Show further that $d$ is uniquely determined.
+\end{problem}
+
+\begin{problem}
+    Suppose $K = \qq[\sqrt{d}]$ where $d \neq 1$ is a squarefree integer. Show that if $d \equiv 2,3 \ (\bmod 4)$, 
+    then 
+    $$\zz_K = \left\{a+b\sqrt{d}:a,b \in \zz\right\} = \zz[\sqrt{d}]$$
+    while if $d \equiv 1 \ (\bmod 4)$, then
+    $$\zz_K = \left\{\frac{a+b\sqrt{d}}{2}:a,b\in \zz, a\equiv b \ (\bmod 2)\right\} = \zz\left[\frac{1+\sqrt{d}}{2}\right]$$
+\end{problem}
+    \begin{proof}
+        Recall Remark 1.3.2: $\alpha \in \bar{\zz} \Leftrightarrow \alpha + \bar{\alpha} \in \zz, \alpha\bar{\alpha}\in \zz$.
+        It suffices to check the latter claim. Let $\alpha = m+n\sqrt{d}$ where $m, n \in \qq$
+        , then for $\alpha\in \zz_K$, we need
+        $$2m \in \zz, m^2-dn^2 \in \zz$$
+        Thus, we write $m = t/2, n = p/q$ where $t, p, q \in \zz, \gcd(p,q) = 1$.
+        This reduces to 
+        $$ \frac{t^2}{4}-\frac{p^2d}{q^2} \in \zz$$
+        If $q = 1$, then $2\mid t$.
+        If $q = 2$, then $4 \mid t^2-p^2d$. When $d \equiv 1 (\bmod 4)$, we now that 
+        $t$ and $p$ can have the same parity (the second case in the problem). Otherwise, both 
+        $t$ and $q$ should be even. If $q > 2$, the number above cannot be in $\zz$. \\ 
+        The argument shows that for $\alpha$ to be in $\zz_K$, it has to satisfy $m, n \in \zz$ when $d \equiv 2,3 \ (\bmod 4)$ and 
+        $2m, 2n \in \zz$ where $2m \equiv 2n \ (\bmod 2)$. We now check that for all number that satisfy the condition, 
+        it's really in $\zz_K$. This can be check by 
+        $$(x-\alpha)(x-\bar{\alpha}) \in \zz[x]$$
+        in either case.
+    \end{proof}
+
+\begin{problem}[Units when $d < 0$]
+    Let $K = \qq[\sqrt{d}]$ where $d < 0$ and $d$ squarefree. 
+    Show that: 
+    \begin{itemize}
+        \item When $d \neq -1, -3$, the (only) units of $\zz_K$ are $\pm 1$.
+        \item When $d = -1$, the units are $\pm 1, \pm i$.
+        \item When $d = -3$, the units are $\pm 1, \pm \omega, \pm \omega^2$ where $\omega = e^{2\pi i/3}$.
+    \end{itemize}
+\end{problem}
+    This is easily checked by the above problem and consider the fact that the norm of the unit is 1.
+
+\begin{problem}[Units when $d > 1$]
+    Let $K = \qq[\sqrt{d}]$ where $d >1$ and $d$ squarefree. 
+    Show that: 
+    \begin{itemize}
+        \item If $\epsilon = x+y\sqrt{d} > 1$ is a unit, then $x, y > 0$.
+        \item The set of units of $\zz_K$ that are larger than 1 has a smallest element.
+        \item Let $\epsilon_0$ be the unit you found in part (b). Show that every unit of $\zz_K$ has a unique expression in the form $\pm \epsilon_0^n$.
+        $\epsilon_0$ is called the "fundamental unit".
+    \end{itemize}
+\end{problem}
+    \begin{proof}
+        First, $x^2-dy^2 = \pm 1$ gives $\epsilon|\bar{\epsilon}| = 1$. We know that $|\bar{\epsilon}| < 1/\epsilon < \epsilon$
+        $$ x = \frac{\epsilon + \bar{\epsilon}}{2} > \frac{1}{2}(1-1) = 0$$
+        $$ y = \frac{\epsilon - \bar{\epsilon}}{2\sqrt{d}} > \frac{1}{2\sqrt{d}}(\epsilon-\epsilon) = 0$$
+        The second claim is similar to the Well-Ordering Principle by noticing we have to compare the pair $(x,y) \in \zz^2$ or $(2x, 2y) \in \zz^2$. We can first pick the smallest $y$
+        by considering $\{2y\} \subset \zz$ and then argue that the corresponding $x$ should also be the smallest. \\
+        The third claim is a direct consequnce of the second one by noticing that the units are multiplicative. If there are some unit $u > 1$ and $u \in (\epsilon_0^k, \epsilon_0^{k+1})$, 
+        then $u\epsilon_0^{-k}$ is a unit in $(1, \epsilon_0)$, contradiction.
+    \end{proof}
+    \begin{example}
+        The fundamental units in $\zz[\sqrt{2}]$, $\zz[\sqrt{3}]$, $\zz[\sqrt{5}]$ and $\zz[\sqrt{7}]$ are 
+        $1+\sqrt{2}, 2+\sqrt{3}, (1+\sqrt{5})/2, 8+3\sqrt{7}$, respectively.
+    \end{example}
+    \begin{remark}
+        A better procedure to calculate the units of these quadratic fields is to use the continued fractions.
+    \end{remark}
+\begin{problem}
+    Suppose that $d \equiv 1 \ (\bmod 4) $is squarefree, $d \neq 1$. Show that the ring $\zz[\sqrt{d}]$ does not have
+    unique factorization.
+\end{problem}
+    \begin{proof}
+        Let $d = 4t+1$ where $t \in \zz$.
+        $$(\sqrt{d}+1)(\sqrt{d}-1) = d - 1 = 2 \cdot (2t)$$
+        but $ 2 \nmid (\sqrt{d}+1)$, $2 \nmid (\sqrt{d}-1)$ and $2$ is an irreducible (there is no solution to $x^2-y^2d = 2$ in this case).
+    \end{proof}
+
+\begin{problem}
+    Let $K$ be a field and let $R$ be a subring of $K$ having $K$ as its fraction field. 
+    (This means that every element of $K$ is a quotient of two elements of $R$.) 
+    Suppose that $R$ is a unique factorization domain. Prove that if $a \in K$ is a root of a monic polynomial in $R[x]$,
+    then $a \in R$. What does this have to do with the last exercise?
+\end{problem}
+    \begin{proof}
+        The proof is analogous to the "rational root theorem" where $\qq$ and $\zz$ are used instead of $K$ and $R$.
+        With this hindsight, we let $R = \zz[\sqrt{d}]$ and $K = \qq[\sqrt{d}]$. 
+        When $d \equiv 1 \ (\bmod 4)$, $\frac{1+\sqrt{d}}{2}$ doesn't belong to $R$, but it is a root of 
+        the polynomial 
+        $$ \left(x-\frac{1+\sqrt{d}}{2}\right)\left(x-\frac{1-\sqrt{d}}{2}\right) = x^2-x+\frac{1-d}{4} \in R[x] $$
+        Thus, $\zz[\sqrt{d}]$ is not a UFD.
+    \end{proof}
+    \begin{remark}
+        This explains why $\zz_K$ is the right to study for it better ensures unique factorization.
+    \end{remark}
+
+
+
+
+
+
+
+
+
 
 
 \end{document} 
