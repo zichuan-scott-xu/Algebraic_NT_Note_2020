@@ -358,4 +358,172 @@ the ideals. For example, we can check that $\langle 3 \rangle = \langle 3, 1+\sq
         &= \langle 3\rangle
     \end{align*}
 
+\section{Problem Session 3, August 4}
+\begin{problem}
+    Let $R$ be a domain. Show that if $R$ has a division algorithm, 
+    then every ideal of $R$ has the form $\langle\alpha\rangle$ for some $\alpha \in R$. An ideal of this form is called principal.
+\end{problem}
+    \begin{proof}
+        Recall that we can continue the division algorithm until it terminates with a remainder $\rho_k$ of the smallest possible norm before it 
+        becomes $0$ (Euclidean Algorithm). It's easily checked that $R = \langle \rho_k \rangle$ in this case and $R$ is a PID.
+    \end{proof}
+
+\begin{problem}
+    Let $I$ be the ideal of $\mathbb{Z}[x]$ described by $I=\{f(x) \in \mathbb{Z}[x]: f(0) \text { is even }\}$. 
+    Prove that $I=\langle 2, x\rangle$.
+\end{problem}
+    \begin{proof}
+        For all $f(x)$ where $f(0)$ is even, we can do the division algorithm of monic polynomial in $\zz[x]$ to get 
+        $f(x) = xq(x)+r$ where $q(x)\in \zz[x]$ and $r$ a constant. Then $r = 2k$ for some $k \in \zz$, and 
+        $f(x) = xq(x)+2\cdot k \in \langle 2, k\rangle$. On the other hand, any element in $\langle 2,k\rangle$ has an even constant term.
+    \end{proof}
+\begin{problem}
+    Let $R$ be a ring. Let $S$ be any subset of $R$. Recall that $\langle\alpha\rangle_{\alpha \in S}$ is defined by
+    $\left\{\text {all finite sums } c_{1} \alpha_{1}+\cdots+c_{k} \alpha_{k}: c_{1}, \ldots, c_{k} \in R \text { and } \alpha_{1}, \ldots, \alpha_{k} \in S\right\}$.\\
+    Show that $\langle\alpha\rangle_{\alpha \in S}$ is an ideal of $R$.
+\end{problem}
+\begin{problem}
+    Let $R$ be a ring. Recall that if $I, J$ are ideals of $R,$ we defined
+    $I+J=\{\alpha+\beta: \alpha \in I, \beta \in J\}, \quad I J=\left\{\text { finite sums } \sum_{i} \alpha_{i} \beta_{i}, \text { where } \alpha_{i} \in I, \beta_{i} \in J\right\}$.
+    Show that $I+J$ and $I J$ are ideals of $R$.
+\end{problem}
+    We can quickly check these two problems by chasing the definition of ideals.
+
+\begin{problem}
+    Let $R=\mathbb{Z}[\sqrt{-5}]$ and let $I=\langle 2,1+\sqrt{-5}\rangle .$ Show that $N(\alpha)$ is even for each $\alpha \in I$.
+    Here $N(\cdot)$ is the norm function on $\mathbb{Q}[\sqrt{-5}]$.
+\end{problem}
+    \begin{proof}
+        Let $\alpha = 2s+(1+\sqrt{-5})t \in I$. Then 
+        $$ \alpha = (2s+t) + t\sqrt{-5}$$
+        $$ N(\alpha) = (2s+t)^2 + 5t^2$$
+        is even.
+    \end{proof}
+
+\begin{problem}
+    Check the following basic properties of ideal operations in a ring $R$ :
+    \begin{itemize}
+        \item Addition and multiplication are associative and commutative.
+        \item $\langle 0\rangle$ is the additive identity and $\langle 1\rangle$ is the multiplicative identity.
+        \item Multiplication distributes over addition: $I(J+K)=IJ+IK$.
+        \item $I J \subseteq I \cap J$.
+        \item If $I=\left\langle\alpha_{1}, \ldots, \alpha_{k}\right\rangle, J=\left\langle\beta_{1}, \ldots, \beta_{\ell}\right\rangle,$ then
+        \[
+        I J=\left\langle\alpha_{1} \beta_{1}, \ldots \alpha_{1} \beta_{\ell}, \ldots, \alpha_{k} \beta_{1}, \ldots, \alpha_{k} \beta_{\ell}\right\rangle
+        \]
+        \item If $R$ is a domain and $I, J \neq\langle 0\rangle,$ then $I J \neq\langle 0\rangle$
+    \end{itemize}
+\end{problem}
+    For the fifth claim, we notice that the left hand side is a subset to the right hand side and vice versa, which proves that these two sets are equal.
+
+\begin{problem}
+    Complete the verification that in $\mathbb{Z}[\sqrt{-5}]$, we have
+    \[
+    \begin{array}{ll}
+    \langle 2\rangle=\langle 2,1+\sqrt{-5}\rangle\langle 2,1-\sqrt{-5}\rangle, & \langle 1+\sqrt{-5}\rangle=\langle 2,1+\sqrt{-5}\rangle\langle 3,1+\sqrt{-5}\rangle \\
+    \langle 3\rangle=\langle 3,1+\sqrt{-5}\rangle\langle 3,1-\sqrt{-5}\rangle, & \langle 1-\sqrt{-5}\rangle=\langle 2,1-\sqrt{-5}\rangle\langle 3,1-\sqrt{-5}\rangle
+    \end{array}
+    \]
+\end{problem}
+    One verification is done in the note for Lecture 3. The others are similar.
+    
+\begin{problem}
+    Now let $K=\mathbb{Q}[\sqrt{d}],$ where $d \in \mathbb{Z}$ is squarefree, $d \neq 1 .$ Put $\tau=\sqrt{d}$ when $d \neq 1$ $(\bmod 4),$ and put 
+    $\tau=\frac{1+\sqrt{d}}{2}$ when $d \equiv 1(\bmod 4)$. Recall that every element of $\mathbb{Z}_{K}$ has a unique expression in the form $u+v \tau$ with $u, v \in \mathbb{Z}$.
+    Let $I$ be a nonzero ideal of $\mathbb{Z}_{K}$. Check that:
+    \begin{itemize}
+        \item Put $I_{0}=I \cap \mathbb{Z} . \text { Show that } I_0 \text { is a nonzero ideal of } \mathbb{Z} . \text { It follows that } I_{0}=n \mathbb{Z}$.
+        \item Put $I_{1}=\{b \in \mathbb{Z}: a+b \tau \in I \text { for some } a \in \mathbb{Z}\}$. Show that $I_{1}$ is a nonzero ideal of $\zz$. Thus, $I_{1}=B \mathbb{Z}$ for some positive integer $B$.
+        \item since $B \in B \mathbb{Z}=I_{1}$, we can choose $A \in \mathbb{Z}$ with $A+B \tau \in I$. Show that $n, A+B \tau$ form a $\zz$-basis for $I$. 
+            That is, every element of $I$ can be written uniquely in the form $u n+v(A+B \tau)$ for integers $u, v$ 
+            for some integer $n$, which can be chosen to be positive.
+    \end{itemize}
+\end{problem}
+    \begin{proof}
+        The first claim is easy to check by looking at the definition of ideals and the fact that all the ideals in $\zz$ are of the form $n\zz$. Plus, because $I$ is not empty, 
+        there is some $\alpha \in I$ and $\alpha\bar{\alpha}\in I \cap \zz$. Therefore, $I_0$ is a non-zero ideal.\\
+        \newline
+        Now we prove the second claim. $0 \in I_1$ because $I$ is non-empty. The addition closure and the multiplication "absorbing" property is also easy to check. 
+        Now Suppose that $I_1 = {0}$, but we can pick $b \in I$ and $b\tau \in I_1$ with $b \neq 0$, giving the contradiction.\\
+        \newline
+        For the third claim, start from any $a+b\tau \in I$, but then $B \mid b$ because $b \in I_1$. Then, we can write $b = Bv$ where $v \in \zz$. Notice that 
+        $a+b\tau - v(A+B\tau) \in I$ gives $a-vA \in I$. So $a-vA \in I \cap \zz = n\zz$ for some $n \in \zz$. Therefore, $a-vA = nu$ for some $u \in \zz$.  
+        Together this gives $a+b\tau = un+v(A+B\tau)$. 
+    \end{proof}
+    \begin{corollary}
+        Let $K$ be a quadratic field, and let $I$ be a nonzero ideal of $\mathbb{Z}_{K}$ with standard basis $n, A+B \tau$.
+        Show that $I=\langle n, A+B \tau\rangle$.
+    \end{corollary}
+    Actually, we can prove that every ideal of $\zz_K$ can be generated by two elements in any number fields $K$ (but by a very different way).
+\begin{problem}
+    How many elements does the ring $\mathbb{Z}[\sqrt{-5}] /\langle 3\rangle$ have?
+    Same question for $\mathbb{Z}[\sqrt{-5}] /\langle 3,1+\sqrt{-5}\rangle$
+\end{problem}
+    \begin{proof}
+        We can show that in the first ring, $a+b\tau = c+d\tau$ implies $a \equiv c, b \equiv d \ (\bmod 3)$. This gives 
+        9 elements in total. In the second ring by a similar argument, there are 3 elements. The second ring is isomorphic to $\zz_3$.
+    \end{proof}
+
+\section{Lecture 4, August 4}
+The goal of today's lecture is to restore the Unique Factorization Theorem in any quadratic field $\zz_K$.
+The following lemma characterize a way to construct a principal ideal in $\zz_K$.
+\begin{lemma}
+    For any $I \in \text{Id}(\zz_K)$, $I\bar{I}$ is a principal ideal of $\zz_K$, where $\bar{I} = \{\bar{\alpha}: \alpha \in \zz_K\}$.
+\end{lemma}
+
+\begin{proof}
+    Recall in Problem Set 3 that $I$ can be represented as $I = \langle \alpha, \beta \rangle$. Then 
+    \begin{align*}
+        I\bar{I} &= \langle \alpha, \beta \rangle \langle \bar{\alpha}, \bar{\beta} \rangle \\
+        &= \langle N(\alpha), \alpha\bar{\beta}, \beta\bar{\alpha}, N(\beta) \rangle
+    \end{align*}
+    Observe that $I\bar{I}$ contains $N(\alpha), \text{Tr}(\alpha\bar{\beta}), N(\beta)$, all of which are elements in $\zz$.
+    We can let $n = \gcd(N(\alpha), \text{Tr}(\alpha\bar{\beta}), N(\beta)$, and by the Euclidean algorithm, $I\bar{I} \subseteq \langle n\rangle$. \\
+    Now we show that $\left\langle n\right\rangle \subseteq I\bar{I}$. It suffices to check that $n \mid \alpha\bar{\beta}$ and 
+    $n \mid \beta\bar{\alpha}$. Let's check the first one and the second one will be similar. \\
+    It then suffices to show that $\frac{\alpha\bar{\beta}}{n} \in \zz_K$. Hence, we check the trace and norm of this number.
+    $$ \text{Tr}\left(\frac{\alpha\bar{\beta}}{n}\right) = \frac{\alpha\bar{\beta} + \bar{\alpha}\beta}{n} \in \zz$$
+    $$ N\left(\frac{\alpha\bar{\beta}}{n}\right) = \frac{N(\alpha)N(\bar{\beta})}{n^2}\in \zz$$
+    And we are done by Remark 1.3.2. \\
+    To conclude, we proved that $I\bar{I} = \langle n \rangle$ where $n \in \zz$.
+\end{proof}
+
+\begin{definition}[Irreducible Ideal]
+    An $P \in \text{Id}(\zz_K)$ is irreducible if $P \neq \langle 1\rangle$, and if whenever $P = AB$, either 
+    $A$ or $B$ is $\left\langle 1\right\rangle$.
+\end{definition}
+
+Now we can start to prove that there is UFT in $\text{Id}(\zz_K)$. The existence is easy by using the WOP, and now we want to construct the 
+"uniqueness" proof.
+
+\begin{lemma}[To Contain is to Divide]
+    Let $A, B \in \text{Id}(\zz_K)$, then $A \mid B \Leftrightarrow A \supseteq B$.
+\end{lemma}
+    \begin{proof}
+        ($\Rightarrow$) If $A \mid B$, then $B = AC$ for some $C \in \text{Id}(\zz_K)$. 
+        Now $B = AC \subset A\cap C \subset A$. \\
+        ($\Leftarrow$) Now suppose that $B \subset A$. We know that $A\bar{A} = \langle \alpha \rangle$ is a principal ideal.
+        (If by chance $B = AC$, then we have $\bar{A}B = \langle \alpha \rangle C = \alpha C$, which is called a "dilation" of $C$.
+        Then $C$ should be $\alpha^{-1}\bar{A}B$.) We check that $A(\alpha^{-1}\bar{A}B) = B$, so $A \mid B$ ($\alpha^{-1}\bar{A}B$ is also
+        an ideal). 
+    \end{proof}
+
+Now we want to fix the "Bezout's Theorem" so that we can prove the "Fundamental Lemma" on our ideal ring.
+\begin{theorem}
+    Assume $P, A \in \text{Id}(\zz_K)$ where $P \nmid A$ and $P$ is an irreducible ideal. Then $P+A = \langle 1 \rangle$.
+\end{theorem}
+    \begin{proof}
+        Since $0 \in A$, $P+A \supseteq P$. If $P+A = P$, then $P = P+A \sup A$, $P \mid A$, contradiction.
+        Therefore, $P+A \supset P$, which gives $P+A = \langle 1 \rangle$.
+    \end{proof}
+
+Now we are sure that there is UFT in $\text{Id}(\zz_K)$. But why should we care?
+\begin{remark}
+    $\zz_K$ is a PID $\Leftrightarrow$ $\zz_K$ is a UFD. (UFD is PID in general, but the forward claim is harder (TODO).)
+\end{remark}
+
+Now let's consider the ring $\zz[\sqrt{-19}]$. This ring does not have a division algorithm regardless what the norm is, but 
+we will show in the next lecture that it's still a UFD.
+
+
 \end{document} 
